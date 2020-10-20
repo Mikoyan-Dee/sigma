@@ -1,0 +1,22 @@
+title: PS Remoting
+status: experimental
+description: Detects PowerShell Lateral Movement 
+references:
+    - https://www.linkedin.com/posts/mittalnikhil_sysmon-blueteam-activity-6704741943127154688-IgZM
+author: Kyaw Pyiyt Htet @Mikoyan
+date: 20-10-2020
+tags:
+    - attack.t1059.001
+    - attack.execution
+logsource:
+    category: network_connection
+    product: windows
+    definition: 'Use the following config to generate the necessary Event ID 3 Network Connection events'
+detection:
+    selection:
+        Image: '*\wsmprovhost.exe'
+        Initiated: 'true'
+    condition: selection 
+falsepositives:
+    - 'unknown'
+level: medium
