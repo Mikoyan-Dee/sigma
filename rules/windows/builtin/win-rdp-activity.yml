@@ -1,0 +1,25 @@
+title: Lateral Movement Using RDP
+status: experimental
+description: evidence of RDP activity 
+references:
+    - https://blog.menasec.net/2019/03/an-overview-of-windows-eventid-4648.html
+author: Kyaw Pyiyt Htet (Mik0yan)
+date: 2020/10/23
+tags:
+    - attack.lateral_movement
+    - attack.t1075          # an old one
+    - attack.s0002
+    - attack.t1550.002
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4648
+    selection_1:
+        - AdditionalInformation|contains:
+          - 'TERMSRV'
+    condition: selection and selection_1
+falsepositives:
+    - System administrator can connect for system administration
+level: high
