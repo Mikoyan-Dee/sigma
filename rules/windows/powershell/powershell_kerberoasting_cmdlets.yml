@@ -1,0 +1,24 @@
+title: Kreberoast Commandlets
+status: experimental
+description: Detects Commandlet of Kerberoasting activity
+date: 2020/10/24
+references:
+    - https://github.com/cyberark/RiskySPN & https://www.harmj0y.net/blog/powershell/kerberoasting-without-mimikatz/
+tags:
+    - attack.credential.access
+    - attack.t1558.003
+author: Kyaw Pyiyt Htet (Mik0yan)
+logsource:
+    product: windows
+    service: powershell
+    definition: It is recommanded to use the new "Script Block Logging" of PowerShell v5 https://adsecurity.org/?p=2277
+detection:
+    keywords:
+        - Find-PotentiallyCrackableAccounts
+        - Export-PotentiallyCrackableAccounts
+        - Get-TGSCipher
+        - Invoke-Kerberoast
+    condition: keywords
+falsepositives:
+    - Penetration testing
+level: high
